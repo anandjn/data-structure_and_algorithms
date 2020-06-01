@@ -1,11 +1,13 @@
 #!/usr/bin/python
 
-'''implementing hash tables using predefined hash function.
+'''
+Implementing hash tables using predefined hash function.
 It has 2 methods(setting and getting).
       TASK                  Time-complexity
 adding a new pair                 O(1)
 updating and existing pair        O(n)
-getting value for key             O() '''
+getting value for key             O(n) 
+'''
 
 
 class HashTable:
