@@ -1,13 +1,12 @@
 #!/usr/bin/python
 
-'''
-Implementing hash tables using predefined hash function.
+'''implementing hash tables using predefined hash function.
 It has 2 methods(setting and getting).
       TASK                  Time-complexity
 adding a new pair                 O(1)
 updating and existing pair        O(n)
-getting value for key             O(n) 
-'''
+getting value for key             O(n)
+getting keys list             O(n**2) '''
 
 
 class HashTable:
@@ -52,6 +51,15 @@ class HashTable:
       if key == k:
         print(v)
         return v
+  def keys(self):
+    keyArr = []
+    #go to each bucket
+    for bucket in self.data:
+      #if bucket has item then go to each item and the key
+      if len(bucket) > 0:
+        for k,v in bucket:
+          keyArr.append(k)
+    return keyArr
 
 
 #hash table of size 50(buckets)
@@ -62,4 +70,5 @@ myHashTable.getting('grapess')
 myHashTable.seting("apples", 50)
 myHashTable.getting('apple')
 myHashTable.getting('apples')
+print(myHashTable.keys())
 
