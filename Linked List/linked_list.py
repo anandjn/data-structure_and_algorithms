@@ -1,4 +1,6 @@
 #!/bin/python
+
+
 '''implementing linked list '''
 
 class LinkedList:
@@ -9,7 +11,6 @@ class LinkedList:
     #tail is same as head as this is constructor
     self.tail = self.head
     self.length = 1
-    self.data = value
   
   def appendIt(self , value):
     '''append a new node to exixting linked list at last postion'''
@@ -32,44 +33,60 @@ class LinkedList:
     self.head = newNode
     #increment length
     self.length +=1
+  
+  def traverse(self, index):
+    localHead = self.head
+    for i in range(index):
+        localHead = localHead['next']
+
+    return localHead
 
   def insert(self, index, value):
-    #if index == 0 then go for prepend
-    if index == 0:
-      self.prepend(value)
-    #if index == length of linked list then go for append
-    elif index == self.length-1:
-      self.appendIt(value)
     #if index is negative print error
-    elif index < 0:
+    if index < 0:
       print("error: index is negative")
     #if index is more than length print error
     elif index >= self.length:
-      print("error: out of bound")  
+      print("error: out of bound")
+    #if index == 0 then go for prepend
+    elif index == 0:
+      self.prepend(value)
+    #if index == length of linked list then go for append
+    elif index == self.length-1:
+      self.appendIt(value)  
     #else create new node
     else:
       newNode = {'value': value, 'next': None}
       #break the list
-      self.localHead = self.head
-      #loop until we point at (i-1)th index
-      for i in range(index-1):
-        self.localHead = self.localHead['next']
-      #now local head is pointing to (i-1)th index
+      localHead = self.traverse(index-1)
       #append list[i to n] to new node
-      newNode['next'] = self.localHead['next']
+      newNode['next'] = localHead['next']
       #point the local head to newnode
-      self.localHead['next'] = newNode 
+      localHead['next'] = newNode
+      #increment length of linked list
+      self.length +=1 
+
+  def delete(self, index):
+    #check index
+    if 0 > index or index > self.length-1:
+      print("error: enter valid index") 
+    else:
+      #delete the indexed element and reduce length
+      localHead = self.traverse(index-1)
+      #make next of localHeadD to point to next of next node
+      localHead['next'] = localHead['next']['next']
+      self.length -= 1
 
   def printList(self):
     #iterate till none and return a list of values
-    self.myarray = []
-    self.currentNode = self.head
-    while(self.currentNode):
-      self.myarray.append(self.currentNode['value'])
-      self.currentNode = self.currentNode['next']
+    myarray = []
+    currentNode = self.head
+    while(currentNode):
+      myarray.append(currentNode['value'])
+      currentNode = currentNode['next']
     
-    print(self.myarray)
-    return self.myarray
+    print(myarray)
+    return myarray
 
 
 
@@ -80,12 +97,17 @@ mylist.appendIt(16)
 mylist.printList()
 mylist.prepend(27)
 mylist.printList()
-mylist.insert(3, 100)
+mylist.insert(2, 200)
 mylist.printList()
-mylist.insert(6, 100)
+mylist.insert(3,100)
 mylist.printList()
-mylist.insert(-2, 100)
-
-
+mylist.insert(4, 500)
+mylist.printList()
+mylist.insert(-2, 700)
+print(mylist.traverse(1)['value'])
+mylist.delete(4)
+mylist.printList()
+mylist.delete(6)
+mylist.printList()
 
 
