@@ -1,6 +1,5 @@
 #!/bin/python
 
-
 '''implementing linked list '''
 
 class LinkedList:
@@ -77,6 +76,30 @@ class LinkedList:
       localHead['next'] = localHead['next']['next']
       self.length -= 1
 
+  def reverse(self):
+    #if length == 1 do nothing
+    if(self.length == 1):
+      return
+    else:
+      #grab first and second Node
+      first = self.head
+      second = first['next']
+
+      #shift tail to head and head to tail
+      self.head = self.tail
+      self.tail = first 
+      self.tail['next'] = None       
+      
+      #traverse till end and reverse link nodes
+      while (second != None):
+        temp = second['next']
+        second['next'] = first
+        first = second
+        second = temp      
+    
+    return
+
+
   def printList(self):
     #iterate till none and return a list of values
     myarray = []
@@ -101,7 +124,7 @@ mylist.insert(2, 200)
 mylist.printList()
 mylist.insert(3,100)
 mylist.printList()
-mylist.insert(4, 500)
+mylist.insert(4, 50)
 mylist.printList()
 mylist.insert(-2, 700)
 print(mylist.traverse(1)['value'])
@@ -109,5 +132,5 @@ mylist.delete(4)
 mylist.printList()
 mylist.delete(6)
 mylist.printList()
-
-
+mylist.reverse()
+mylist.printList()
