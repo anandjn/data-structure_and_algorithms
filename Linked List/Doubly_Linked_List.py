@@ -1,5 +1,12 @@
 #!/bin/python
+'''implementing doubly linked list 
 
+    TASK          TIME-COMPLEXITY
+  1.append            O(1)
+  2.prepend           O(1)
+  3.insert           *O(n)
+  4.delete           *O(n)
+  5.print             O(n)  '''
 
 class DoublyLL:
   
