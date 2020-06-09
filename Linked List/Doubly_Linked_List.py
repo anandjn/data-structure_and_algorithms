@@ -1,4 +1,4 @@
-#!/bin/python
+#!/usr/bin/python3
 '''implementing doubly linked list 
 
     TASK          TIME-COMPLEXITY
