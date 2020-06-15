@@ -1,4 +1,3 @@
-#!/bin/python
 
 '''
 //Google Question

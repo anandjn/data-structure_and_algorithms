@@ -1,4 +1,4 @@
-#!/bin/python
+
  '''implementing linked list 
 
     TASK          TIME-COMPLEXITY

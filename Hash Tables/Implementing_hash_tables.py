@@ -1,4 +1,3 @@
-#!/usr/bin/python
 
 '''implementing hash tables using predefined hash function.
 It has 2 methods(setting and getting).

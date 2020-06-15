@@ -1,4 +1,3 @@
-#!/bin/python
 
 '''implementing stacks using linked list  top(1) --> (2) --> (3)(bottom)
     TASK                TIME COMPLEXITY
