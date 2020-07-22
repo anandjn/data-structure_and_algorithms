@@ -1,91 +1,62 @@
-'''implementing queues using linked list
-    TASK            TIME-COMPLEXITIES
-  1) peek             O(1)
-  2) enqueue          O(1)
-  3) dequeue          O(1)
-
+'''
+implementing queue using 2 stacks as arrays
+    TASK              TIME-COMPLEXITIE
+    1) equeue             O(1)
+    2) dequeue            O(n)
+    3) peek               O(n)
+    3) isEmpty            O(1)
 '''
 
-class Node:
-  def __init__(self, value):
-    self.value = value
-    self.next = None
-
-  def __str__(self):
-    return(f"{self.value} -> {self.next}")
-
-
 class Queue:
-
   def __init__(self):
-  
-    self.first = None
-    self.last = None
-    self.length = 0
-    
-  def peek(self):
-  #check for length
-    if self.length == 0:
-      return None
-    return self.first.value
+    self.first = []
+    self.second = []
 
   def enqueue(self, value):
-    '''puts an element at the end of queue'''
+    #put the element in first list
+    self.first.append(value)
 
-    #create a new node and store the Value
-    newNode = Node(value)
-
-    #set first and last refereces
-    #check for length
-    if self.length == 0:
-      self.first = newNode
-      self.last= newNode
-    else:
-      #append in linked list
-      self.last.next = newNode
-      self.last = newNode
-    
-    #incement length of Queue
-    self.length +=1
-
-    return self.first
-    
   def dequeue(self):
-    #check for length
-    if self.isEmpty():
-      print("nobody in Queue")
-      return
 
-    #get the first element
-    element = self.first.value
+    if self.isEmpty() == True:
+      return None
 
-    #shift first pointer
-    #holdigPointer = self.first
-    self.first = self.first.next
-    #decrement length of Queue
-    self.length -=1
+    #if second array is empty then first empty first array in second array such that last inserted element in first array is first inserted element in second array then pop from second array
+    if len(self.second) == 0 :
+      for _ in range(len(self.first)):
+        self.second.append(self.first.pop())
     
-    return element
+    return self.second.pop()
+
+  def peek(self):
+
+    if self.isEmpty() == True:
+      return None
+    #if second array is empty then first empty first array in second array such that last inserted element in first array is first inserted element in second array then peek from second array
+
+    if len(self.second) == 0:
+      for _ in range(len(self.first)):
+        self.second.append(self.first.pop())
+    
+    return self.second[len(self.second)-1]
 
   def isEmpty(self):
-    if self.length == 0:
+    if len(self.first) == 0 and len(self.second) ==0:
       return True
-    return False
-  
+    else:
+      False
 
-myQ = Queue()
-myQ.enqueue('Joy')
-myQ.enqueue('Matt')
-myQ.enqueue('Pavel')
-print(myQ.peek())
-print(myQ.dequeue())
-print(myQ.enqueue('Samir'))
-print(myQ.dequeue())
-print(myQ.isEmpty())
-print(myQ.dequeue())
-print(myQ.isEmpty())
-print(myQ.dequeue())
-print(myQ.isEmpty())
-print(myQ.dequeue())
-print(myQ.isEmpty())
+
+myQueue = Queue()
+print(myQueue.peek())
+myQueue.enqueue('Joy')
+myQueue.enqueue('Matt')
+myQueue.enqueue('Pavel')
+print(myQueue.peek())
+print(myQueue.dequeue())
+print(myQueue.dequeue())
+print(myQueue.dequeue())
+print(myQueue.peek())
+
+  
 
